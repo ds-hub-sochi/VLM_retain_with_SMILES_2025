@@ -38,21 +38,25 @@ The interview data is sensitive and provided only to team members through secure
 - **VMLHD**: The Historical Arabic Documents dataset is designed to support recognition systems for handwritten Arabic texts. It features 668 fully annotated pages with 159,149 subword segments and 326,289 characters (with a vocabulary of 5,509 unique forms) annotated at the subword level. The manuscripts in this dataset were created between 1088 and 1451, reflecting a broad historical range and significant evolution in script and stylistic features. Learn more [here](https://majeek.github.io/tutorials/vmlHD/).
 
 ## Evaluation of Outcome
-Successful outcomes will be measured by:
-- Qualitative improvement in feedback.
-- Quantitative increase in favorability ratings among skeptical agents.
-- Demonstrated enhancement of communication sentiment post-iteration.
+We assess our solution using a dual approach that addresses both task-specific performance and the model's general vision-language capabilities:
 
-## About
-This project was developed as part of a hackathon to explore innovative methods using LLM-based synthetic focus groups for central bank communication evaluation. It serves as a blueprint for future research and practical applications in economic communication strategy.
+1. OCR Task Evaluation:
+   - We evaluate OCR performance on historical documents using standard metrics, including Character Error Rate (CER) and Word Error Rate (WER). These metrics provide a clear quantitative measure of the model's accuracy in recognizing printed and handwritten text.
+
+2. Qwen2.5-VL Benchmark Evaluation:
+   - To ensure that fine-tuning on the OCR task does not compromise the model's overall vision-language abilities, the Qwen2.5-VL 7B model is evaluated on several established open benchmarks as reported in its technical documentation:
+       • VQA 2.0: Assessed through visual question answering accuracy using overall accuracy scores.
+       • MS-COCO: Evaluated for image captioning and visual grounding using multiple metrics such as BLEU, METEOR, CIDEr, and SPICE.
+       • Flickr30k: Performance is measured on image-text retrieval and captioning tasks, employing metrics like Recall@1, Recall@5 for retrieval, and BLEU scores for captioning.
+
+This comprehensive evaluation strategy ensures that our fine-tuning procedure enhances OCR performance while preserving the robust general vision-language capabilities of the model. Our goal is to ensure that the final metrics do not drop by more than 5-10% compared to the baseline model.
 
 ## Resources
-- Relevant literature on focus groups and synthetic agent simulation.
-- Hackathon documentation and submission guidelines.
+- Hugging Face Course: https://huggingface.co/course – A comprehensive course on fine-tuning transformer-based vision-language models.
+- Fast.ai Practical Deep Learning for Coders: https://course.fast.ai – A hands-on course providing strategies for model fine-tuning and deep learning best practices.
+- Deep Learning Specialization by Andrew Ng: https://www.coursera.org/specializations/deep-learning – A series of courses covering fundamental deep learning concepts and techniques.
+- NVIDIA Deep Learning Institute: https://www.nvidia.com/en-us/training/ – Offers professional training and workshops on various deep learning applications including vision-language integration.
+- Stanford CS231n: http://cs231n.stanford.edu – Although focused on computer vision, this course offers valuable insights into model training and fine-tuning techniques.
 
 ## License
 This project is licensed under the [MIT License](LICENSE.txt).
-
----
-
-*Repository maintained by evstalina.* 
