@@ -60,13 +60,44 @@ git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
 cd LLaMA-Factory
 pip install -e ".[torch,metrics]" --no-build-isolation
 ```
-- Llama-factory project structure:
--|
--|-|
--|
-- To add datasets....
-- To run train....
-- To evaluate...
+
+### 📁 Adding a Custom Dataset
+
+To use your own dataset with LLaMA-Factory, register it in the following file:
+
+Add an entry with the following structure:
+
+```json
+"peter_multimodal_train_row": {
+  "file_name": "/path/to/dataset.json",
+  "formatting": "sharegpt",
+  "split": "train",
+  "columns": {
+    "messages": "messages",
+    "images": "images"
+  },
+  "tags": {
+    "role_tag": "role",
+    "content_tag": "content",
+    "user_tag": "user",
+    "assistant_tag": "assistant"
+  }
+}
+```
+⚠️ Note: The "split" field must always be set to "train", even when the dataset is used for evaluation purposes. This is required by the LLaMA-Factory internal data loader.
+
+### 🏃‍♂️ Running Training
+Follow the official LLaMA-Factory Quickstart – Run Train for detailed training instructions:
+
+```bash
+https://github.com/hiyouga/LLaMA-Factory?tab=readme-ov-file#quickstart
+```
+
+### ✅ Model Evaluation
+To evaluate the performance of your model on OCR tasks, use the provided evaluation script calc_metrics.py along with a YAML configuration file.
+```bash
+python llama_factory_configs/calc_metrics.py --cfg_metrics.yaml
+```
 
 ## Resources
 - Hugging Face Course: https://huggingface.co/course – A comprehensive course on fine-tuning transformer-based vision-language models.
