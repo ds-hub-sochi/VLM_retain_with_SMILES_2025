@@ -64,6 +64,9 @@ pip install -e ".[torch,metrics]" --no-build-isolation
 ### 📁 Adding a Custom Dataset
 
 To use your own dataset with LLaMA-Factory, register it in the following file:
+```bash
+LLaMA-Factory/data/dataset_info.json
+```
 
 Add an entry with the following structure:
 
