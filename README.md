@@ -51,6 +51,23 @@ We assess our solution using a dual approach that addresses both task-specific p
 
 This comprehensive evaluation strategy ensures that our fine-tuning procedure enhances OCR performance while preserving the robust general vision-language capabilities of the model. Our goal is to ensure that the final metrics do not drop by more than 5-10% compared to the baseline model.
 
+## Experiments
+- Existing experiments were done using llama-factory framework (https://github.com/hiyouga/LLaMA-Factory)
+- To reproduce experiments simply clone the repo and install requirements like:
+
+```
+git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+cd LLaMA-Factory
+pip install -e ".[torch,metrics]" --no-build-isolation
+```
+- Llama-factory project structure:
+-|
+-|-|
+-|
+- To add datasets....
+- To run train....
+- To evaluate...
+
 ## Resources
 - Hugging Face Course: https://huggingface.co/course – A comprehensive course on fine-tuning transformer-based vision-language models.
 - Fast.ai Practical Deep Learning for Coders: https://course.fast.ai – A hands-on course providing strategies for model fine-tuning and deep learning best practices.
