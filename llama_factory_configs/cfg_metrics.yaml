@@ -1,0 +1,22 @@
+# Directory containing the Qwen VL model shards
+model_path: "path_to_model_shards"
+
+# Path to the JSON file with reference transcriptions
+json_path: "path_to_reference_transcriptions/reference_transcriptions.json"
+
+# Model type: qwen or internvl
+model_type: qwen
+
+# Example text prompt for transcription
+prompt: "You are an expert OCR engine specialized in handwritten historical documents.
+  Transcribe **every** character exactly as it appears — preserve original spelling, punctuation, diacritics, ligatures, and archaic letters.
+  Do **not** add, omit, normalize, correct, or format in any way.
+  Output plain text only, matching the input one-to-one.
+  Do **not** mention or speculate about the author, date, provenance, or any contextual information — provide the raw transcription only."
+# prompt: "Please transcribe all text from this image."
+
+# Output path to store metrics (CSV)
+output_csv: "path_to_save_final_metrics/example_metrics.csv"
+
+# GPU costs per hour (H100 approx 3.5$)
+gpu_cost_per_hour: 3.5

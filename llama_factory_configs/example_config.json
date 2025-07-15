@@ -1,0 +1,35 @@
+{
+    "identity": {
+      "file_name": "identity.json"
+    },
+    "peter_multimodal_train_row": {
+      "file_name": "/home/jovyan/people/murtazin/LLaMA-Factory/datasets/peter/train.json",
+      "formatting": "sharegpt",
+      "split": "train",
+      "columns": {
+        "messages": "messages",
+        "images": "images"
+      },
+      "tags": {
+        "role_tag": "role",
+        "content_tag": "content",
+        "user_tag": "user",
+        "assistant_tag": "assistant"
+      }
+    },
+    "peter_multimodal_val_row": {
+      "file_name": "/home/jovyan/people/murtazin/LLaMA-Factory/datasets/peter/valid.json",
+      "formatting": "sharegpt",
+      "split": "train",
+      "columns": {
+        "messages": "messages",
+        "images": "images"
+      },
+      "tags": {
+        "role_tag": "role",
+        "content_tag": "content",
+        "user_tag": "user",
+        "assistant_tag": "assistant"
+      }
+    }
+  }
