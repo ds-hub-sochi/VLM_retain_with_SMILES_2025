@@ -102,6 +102,32 @@ To evaluate the performance of your model on OCR tasks, use the provided evaluat
 python llama_factory_configs/calc_metrics.py --cfg_metrics.yaml
 ```
 
+## Experiment Table
+| Exp ID | Student | Target Layers | Rank | Alpha | Languages | CER ↓ | WER ↓ | BLEU ↑ | MMLU ↑ | Notes |
+|--------|---------|---------------|------|-------|-----------|-------|-------|--------|--------|-------|
+| **Baseline Experiments** |
+| B1 |  | Visual + Text (All) | 16 | 32 | Russian | | | | | Single language baseline |
+| B2 |  | Visual + Text (All) | 16 | 32 | Arabic | | | | | Single language baseline |
+| B3 |  | Visual + Text (All) | 16 | 32 | English | | | | | Single language baseline |
+| B4 |  | Visual + Text (All) | 16 | 32 | All Mixed | | | | | Combined dataset baseline |
+| **Layer Configuration Analysis** |
+| L1 |  | Visual Only | 16 | 32 | All Mixed | | | | | Vision encoder adaptation |
+| L2 |  | Text Only | 16 | 32 | All Mixed | | | | | Language model adaptation |
+| L3 |  | Visual Attn + Text Attn | 16 | 32 | All Mixed | | | | | Cross-modal attention focus |
+| L4 |  | Visual MLP + Text MLP | 16 | 32 | All Mixed | | | | | Feed-forward layers only |
+| L5 |  | Last 2 Visual + Last 2 Text | 16 | 32 | All Mixed | | | | | Task-specific layers |
+| **Rank Analysis** |
+| R1 |  | Visual + Text (All) | 4 | 8 | All Mixed | | | | | Ultra-low parameters |
+| R2 |  | Visual + Text (All) | 8 | 16 | All Mixed | | | | | Low parameters |
+| R3 |  | Visual + Text (All) | 32 | 64 | All Mixed | | | | | Medium parameters |
+| R4 |  | Visual + Text (All) | 64 | 128 | All Mixed | | | | | High parameters |
+| R5 |  | Visual + Text (All) | 128 | 256 | All Mixed | | | | | Very high parameters |
+| **Language-Specific Strategies** |
+| LS1 |  | Visual + Text (All) | 16 | 32 | Ru→Ar→En | | | | | Sequential training |
+| LS2 |  | Visual + Text (All) | 16 | 32 | En→Ar→Ru | | | | | English-first sequential |
+| LS3 |  | Visual + Text (All) | 16 | 32 | Ar→En→Ru | | | | | Arabic-first sequential |
+
+
 ## Resources
 - Hugging Face Course: https://huggingface.co/course – A comprehensive course on fine-tuning transformer-based vision-language models.
 - Fast.ai Practical Deep Learning for Coders: https://course.fast.ai – A hands-on course providing strategies for model fine-tuning and deep learning best practices.
