@@ -102,6 +102,40 @@ To evaluate the performance of your model on OCR tasks, use the provided evaluat
 python llama_factory_configs/calc_metrics.py --cfg_metrics.yaml
 ```
 
+## Experiment Table
+| Exp ID | Student | Target Layers | Rank | Alpha | Languages | CER ↓ | WER ↓ | BLEU ↑ | PPL ↓ | HellaSwag ↑ | MMLU ↑ | Notes |
+|--------|---------|---------------|------|-------|-----------|-------|-------|--------|-------|-------------|--------|-------|
+| Baseline Experiments |
+| B1 | A | Visual + Text (All) | 16 | 32 | Russian | | | | | | | Single language baseline |
+| B2 | A | Visual + Text (All) | 16 | 32 | Arabic | | | | | | | Single language baseline |
+| B3 | A | Visual + Text (All) | 16 | 32 | English | | | | | | | Single language baseline |
+| B4 | A | Visual + Text (All) | 16 | 32 | All Mixed | | | | | | | Combined dataset baseline |
+| Layer Configuration Analysis |
+| L1 | A | Visual Only | 16 | 32 | All Mixed | | | | | | | Vision encoder adaptation |
+| L2 | A | Text Only | 16 | 32 | All Mixed | | | | | | | Language model adaptation |
+| L3 | A | Visual Attn + Text Attn | 16 | 32 | All Mixed | | | | | | | Cross-modal attention focus |
+| L4 | A | Visual MLP + Text MLP | 16 | 32 | All Mixed | | | | | | | Feed-forward layers only |
+| L5 | B | Last 2 Visual + Last 2 Text | 16 | 32 | All Mixed | | | | | | | Task-specific layers |
+| Rank Analysis |
+| R1 | B | Visual + Text (All) | 4 | 8 | All Mixed | | | | | | | Ultra-low parameters |
+| R2 | B | Visual + Text (All) | 8 | 16 | All Mixed | | | | | | | Low parameters |
+| R3 | B | Visual + Text (All) | 32 | 64 | All Mixed | | | | | | | Medium parameters |
+| R4 | B | Visual + Text (All) | 64 | 128 | All Mixed | | | | | | | High parameters |
+| R5 | B | Visual + Text (All) | 128 | 256 | All Mixed | | | | | | | Very high parameters |
+| Language-Specific Strategies |
+| LS1 | C | Visual + Text (All) | 16 | 32 | Ru→Ar→En | | | | | | | Sequential training |
+| LS2 | C | Visual + Text (All) | 16 | 32 | En→Ar→Ru | | | | | | | English-first sequential |
+| LS3 | C | Visual + Text (All) | 16 | 32 | Separate LoRA | | | | | | | Language-specific adapters |
+| LS4 | C | Visual + Text (All) | 16 | 32 | Weighted 2:2:1 | | | | | | | Balanced sampling |
+| LS5 | C | Visual + Text (All) | 16 | 32 | Curriculum | | | | | | | Easy→Hard progression |
+| Dataset Mixing Strategies |
+| DS1 | D | Visual + Text (All) | 16 | 32 | Uniform 1:1:1 | | | | | | | Equal language sampling |
+| DS2 | D | Visual + Text (All) | 16 | 32 | Proportional | | | | | | | Size-based sampling |
+| DS3 | D | Visual + Text (All) | 16 | 32 | Alternating Epochs | | | | | | | Full epoch per language |
+| DS4 | D | Visual + Text (All) | 16 | 32 | Batch Mixing | | | | | | | 33% each per batch |
+| DS5 | D | Visual + Text (All) | 16 | 32 | Dynamic Weight | | | | | | | Loss-based reweighting |
+
+
 ## Resources
 - Hugging Face Course: https://huggingface.co/course – A comprehensive course on fine-tuning transformer-based vision-language models.
 - Fast.ai Practical Deep Learning for Coders: https://course.fast.ai – A hands-on course providing strategies for model fine-tuning and deep learning best practices.
