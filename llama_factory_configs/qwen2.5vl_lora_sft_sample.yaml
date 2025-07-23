@@ -1,0 +1,65 @@
+### model
+model_name_or_path: Qwen/Qwen2.5-VL-7B-Instruct
+image_max_pixels: 262144
+video_max_pixels: 16384
+trust_remote_code: true
+flash_attention: disabled
+
+### method
+stage: sft
+do_train: true
+do_eval: true
+finetuning_type: lora
+lora_rank: 16
+lora_target: all
+# lora_target:
+#   # языковые слои
+#   - q_proj
+#   - v_proj
+#   - down_proj
+#   - gate_proj
+#   # ─ ViT, верхние 8 слоев —
+#   - visual\.blocks\.(2[4-9]|3[01])\.attn\.qkv\.(weight|bias)
+#   - visual\.blocks\.(2[4-9]|3[01])\.mlp\.gate_proj\.(weight|bias)
+#   - visual\.blocks\.(2[4-9]|3[01])\.mlp\.down_proj\.(weight|bias)
+lora_dropout: 0.1
+lora_alpha: 32
+
+### dataset
+dataset: train_dataset
+eval_dataset: val_dataset
+template: qwen2_vl
+cutoff_len: 2048
+max_samples: 100000
+overwrite_cache: true
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+
+### output
+output_dir: saves/qwen2.5_vl-7b_rank_2_dropout_0.1_alpha_4_uzbek_train2/lora/sft
+logging_steps: 10
+save_strategy: epoch
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+
+### train
+per_device_train_batch_size: 16
+gradient_accumulation_steps: 1
+learning_rate: 5.0e-4
+num_train_epochs: 6    
+lr_scheduler_type: cosine
+warmup_ratio: 0.01
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: Null
+use_liger_kernel: true
+deepspeed: ../LLaMA-Factory/examples/deepspeed/ds_z3_config.json
+report_to: None
+
+### eval
+per_device_eval_batch_size: 8
+eval_strategy: epoch
+load_best_model_at_end: true  
+greater_is_better: false
+metric_for_best_model: eval_loss
